@@ -1,5 +1,3 @@
-//Implemente su propia función map
-
 const users = [
   {id: 1, name: 'Leo', baja: true},
   {id: 2, name: 'Juan', baja: false},
@@ -11,34 +9,16 @@ const users = [
   {id: 8, name: 'Jing', baja: false}
 ]
 
-users.map(user => {
-  console.log(`ID: ${user.id}, Name: ${user.name}`);
+Array.prototype.my_map = function(callback){
+  const new_array = [];
+  for (let i = 0; i < this.length; i++){
+    new_array.push(callback(this[i]));
+  }
+  return new_array;
+};
+
+users.my_map(user => {
+  if (user.baja === false){
+    console.log(`ID: ${user.id}, Name: ${user.name}`);
+  }
 });
-
-/* Lo dejo por si pedia lo visto en clases (Clase Map) y no la función.
-
-const rolls = 1000;
-const dice_results = new Map();
-
-for (let i = 0; i < rolls; i++) 
-{
-  const roll = Math.floor(Math.random() * 6) + 1;
-  if (dice_results.has(roll))
-  {
-    dice_results.set(roll, dice_results.get(roll) + 1);  
-  }
-  else
-  {
-    dice_results.set(roll, 1);
-  }
-}
-
-const dice_results_array = Array.from(dice_results);
-dice_results_array.sort((a, b) => a[0] - b[0]);
-const dice_results_sorted = new Map(dice_results_array);
-
-console.log("Resultados de las tiradas de dado:");
-for(const [number, count] of dice_results_sorted)
-{
-  console.log(`${number}: ${count}`);
-} */
