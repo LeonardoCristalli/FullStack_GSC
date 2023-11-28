@@ -1,0 +1,66 @@
+<form [formGroup]="formulario" (submit)="onSubmit()">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" formControlName="nombre">
+    <div *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
+      <div *ngIf="formulario.get('nombre')?.errors?.['required']">El nombre es requerido.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="apellido">Apellido:</label>
+    <input type="text" id="apellido" formControlName="apellido">
+    <div *ngIf="formulario.get('apellido')?.touched && formulario.get('apellido')?.invalid">
+      <div *ngIf="formulario.get('apellido')?.errors?.['required']">El apellido es requerido</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" formControlName="email">
+    <div *ngIf="formulario.get('email')?.touched && formulario.get('email')?.invalid">
+      <div *ngIf="formulario.get('email')?.errors?.['required']">El email es requerido.</div>
+      <div *ngIf="formulario.get('email')?.errors?.['email']">Ingresa un email válido.</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="confirmarEmail">Confirmar Email:</label>
+    <input type="email" id="confirmarEmail" formControlName="confirmarEmail">
+    <div *ngIf="formulario.get('confirmarEmail')?.touched && formulario.get('confirmarEmail')?.invalid">
+      <div *ngIf="formulario.get('confirmarEmail')?.errors?.['required']">La confirmación de email es requerida.</div>
+      <div *ngIf="formulario.get('confirmarEmail')?.errors?.['notMatching']">Los emails no coinciden.</div>
+    </div>
+  </div>
+
+<div>
+  <label for="telefono">Teléfono:</label>
+  <input type="tel" id="telefono" formControlName="telefono">
+  <div *ngIf="formulario.get('telefono')?.touched && formulario.get('telefono')?.invalid">
+    <div *ngIf="formulario.get('telefono')?.errors?.['required']">El teléfono es requerido.</div>
+  </div>
+</div>
+
+<div>
+  <label for="contraseña">Contraseña:</label>
+  <input type="password" id="contraseña" formControlName="contraseña">
+  <div *ngIf="formulario.get('contraseña')?.touched && formulario.get('contraseña')?.invalid">
+    <div *ngIf="formulario.get('contraseña')?.errors?.['required']">La contraseña es requerida.</div>
+  </div>
+</div>
+
+<div>
+  <label for="recibirNotificaciones">Recibir Notificaciones:</label>
+  <input type="checkbox" id="recibirNotificaciones" formControlName="recibirNotificaciones">
+</div>
+
+<div>
+  <label for="aceptarTerminos">Aceptar Términos:</label>
+  <input type="checkbox" id="aceptarTerminos" formControlName="aceptarTerminos">
+  <div *ngIf="formulario.get('aceptarTerminos')?.touched && formulario.get('aceptarTerminos')?.invalid">
+    <div *ngIf="formulario.get('aceptarTerminos')?.errors?.['requiredTrue']">Debes aceptar los términos.</div>
+  </div>
+</div>
+
+  <button type="submit" [disabled]="!formulario.valid">Enviar</button>
+</form>

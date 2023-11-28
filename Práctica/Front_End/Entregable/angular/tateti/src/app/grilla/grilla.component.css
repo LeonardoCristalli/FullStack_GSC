@@ -1,0 +1,21 @@
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 300px;
+  margin: 20px auto;
+}
+
+app-celda {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  border: 2px solid #333;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+app-celda:hover {
+  background-color: #eee;
+}
