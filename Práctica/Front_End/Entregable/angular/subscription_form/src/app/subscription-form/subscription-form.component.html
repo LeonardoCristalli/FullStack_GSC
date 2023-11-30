@@ -1,66 +1,68 @@
-<form [formGroup]="formulario" (submit)="onSubmit()">
-  <div>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" formControlName="nombre">
-    <div *ngIf="formulario.get('nombre')?.touched && formulario.get('nombre')?.invalid">
-      <div *ngIf="formulario.get('nombre')?.errors?.['required']">El nombre es requerido.</div>
-    </div>
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+  Value: {{ myForm.value | json}}
+
+  <div class="form-row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Nombre:</mat-label>
+      <input matInput formControlName="nombre">
+      <mat-error *ngIf="myForm.get('nombre').hasError('required')">El nombre es obligatorio</mat-error>
+    </mat-form-field>
   </div>
 
-  <div>
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" formControlName="apellido">
-    <div *ngIf="formulario.get('apellido')?.touched && formulario.get('apellido')?.invalid">
-      <div *ngIf="formulario.get('apellido')?.errors?.['required']">El apellido es requerido</div>
-    </div>
+  <div class="form-row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Apellido:</mat-label>
+      <input matInput formControlName="apellido">
+      <mat-error *ngIf="myForm.get('apellido').hasError('required')">El apellido es obligatorio</mat-error>
+    </mat-form-field>
   </div>
 
-  <div>
-    <label for="email">Email:</label>
-    <input type="email" id="email" formControlName="email">
-    <div *ngIf="formulario.get('email')?.touched && formulario.get('email')?.invalid">
-      <div *ngIf="formulario.get('email')?.errors?.['required']">El email es requerido.</div>
-      <div *ngIf="formulario.get('email')?.errors?.['email']">Ingresa un email válido.</div>
-    </div>
+  <div class="form-row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Email:</mat-label>
+      <input matInput formControlName="email" autocomplete="email">
+      <mat-error *ngIf="myForm.get('email').hasError('required')">El email es obligatorio</mat-error>
+      <mat-error *ngIf="myForm.get('email').hasError('email')">Ingresa un correo electrónico válido</mat-error>
+    </mat-form-field>
   </div>
 
-  <div>
-    <label for="confirmarEmail">Confirmar Email:</label>
-    <input type="email" id="confirmarEmail" formControlName="confirmarEmail">
-    <div *ngIf="formulario.get('confirmarEmail')?.touched && formulario.get('confirmarEmail')?.invalid">
-      <div *ngIf="formulario.get('confirmarEmail')?.errors?.['required']">La confirmación de email es requerida.</div>
-      <div *ngIf="formulario.get('confirmarEmail')?.errors?.['notMatching']">Los emails no coinciden.</div>
-    </div>
+  <div class="form-row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Confirmar Email:</mat-label>
+      <input matInput formControlName="confirmarEmail">
+      <mat-error *ngIf="myForm.get('confirmarEmail').hasError('emailNoCoincide')">Los correos electrónicos no coinciden</mat-error>
+    </mat-form-field>
   </div>
 
-<div>
-  <label for="telefono">Teléfono:</label>
-  <input type="tel" id="telefono" formControlName="telefono">
-  <div *ngIf="formulario.get('telefono')?.touched && formulario.get('telefono')?.invalid">
-    <div *ngIf="formulario.get('telefono')?.errors?.['required']">El teléfono es requerido.</div>
+  <div class="form-row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Teléfono:</mat-label>
+      <input matInput formControlName="telefono" autocomplete="tel">
+      <mat-error *ngIf="myForm.get('telefono').hasError('required')">El teléfono es obligatorio</mat-error>
+    </mat-form-field>
   </div>
-</div>
 
-<div>
-  <label for="contraseña">Contraseña:</label>
-  <input type="password" id="contraseña" formControlName="contraseña">
-  <div *ngIf="formulario.get('contraseña')?.touched && formulario.get('contraseña')?.invalid">
-    <div *ngIf="formulario.get('contraseña')?.errors?.['required']">La contraseña es requerida.</div>
+  <div class="form-row">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label>Contraseña:</mat-label>
+      <input matInput formControlName="password" type="password">
+      <mat-error *ngIf="password.invalid && password.errors?.['required']">La contraseña es obligatoria</mat-error>
+      <mat-error *ngIf="password.invalid && password.errors?.['pattern']">La contraseña debe contener al menos un número y una letra</mat-error>
+    </mat-form-field>
   </div>
-</div>
 
-<div>
-  <label for="recibirNotificaciones">Recibir Notificaciones:</label>
-  <input type="checkbox" id="recibirNotificaciones" formControlName="recibirNotificaciones">
-</div>
-
-<div>
-  <label for="aceptarTerminos">Aceptar Términos:</label>
-  <input type="checkbox" id="aceptarTerminos" formControlName="aceptarTerminos">
-  <div *ngIf="formulario.get('aceptarTerminos')?.touched && formulario.get('aceptarTerminos')?.invalid">
-    <div *ngIf="formulario.get('aceptarTerminos')?.errors?.['requiredTrue']">Debes aceptar los términos.</div>
+  <div class="form-row">
+    <mat-checkbox formControlName="recibirNotificaciones">Recibir notificaciones</mat-checkbox>
   </div>
-</div>
 
-  <button type="submit" [disabled]="!formulario.valid">Enviar</button>
+  <div class="form-row">
+    <mat-checkbox formControlName="aceptarTerminos">Acepto los términos y condiciones</mat-checkbox>
+    <mat-error *ngIf="myForm.get('aceptarTerminos').hasError('required')">Debes aceptar los términos y condiciones.</mat-error>
+  </div>
+  
+  <div class="form-row">
+    <button mat-button type="submit">Enviar</button>
+  </div>
+  
 </form>

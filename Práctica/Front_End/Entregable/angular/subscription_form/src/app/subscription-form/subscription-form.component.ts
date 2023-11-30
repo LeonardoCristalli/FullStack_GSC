@@ -1,46 +1,77 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-subscription-form',
   templateUrl: './subscription-form.component.html',
   styleUrls: ['./subscription-form.component.css']
 })
-export class SubscriptionFormComponent {
+export class SubscriptionFormComponent implements OnInit {
   
-  formulario: FormGroup;
+  myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.formulario = this.fb.group({
-      nombre: ['', Validators.required], 
-      apellido: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      confirmarEmail: ['', [Validators.required, Validators.email]],
-      telefono: ['', Validators.required],
-      contraseña: ['', Validators.required],
-      recibirNotificaciones: [false],
-      aceptarTerminos: [false, Validators.requiredTrue],
-    }, {validator: this.checkEmailsMatch}); 
-  }
+  constructor(private fb: FormBuilder) { }
 
-   checkEmailsMatch(group: FormGroup) {
-    const email = group.get('email')?.value;
-    const confirmarEmail = group.get('confirmarEmail')?.value;
+    ngOnInit() {
+      this.myForm = this.fb.group({
+        nombre: ['', [Validators.required]], 
+        apellido: ['', [Validators.required]], 
+        email: ['', [Validators.required, Validators.email]],
+        confirmarEmail: ['', [Validators.required]],
+        telefono: ['', [Validators.required]],
+        password: ['', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])(a-zA-ZO-9]+)$')]],
+        recibirNotificaciones: [false],
+        aceptarTerminos: [false, [Validators.requiredTrue]]
+      }); 
 
-    return email === confirmarEmail ? null : { notMatching: true };
-  }
-  
-  onSubmit(): void {
-    if (this.formulario.valid) {
-      console.log(this.formulario.value); 
-    } else {
-      Object.keys(this.formulario.controls).forEach(controlName => {
-        const control = this.formulario.get(controlName);
-        control?.markAsTouched();
-        if (control?.errors) {
-          console.error(`Error en el control ${controlName}:`, control.errors )
-        }
-      });
+      this.myForm.valueChanges.subscribe(console.log)
     }
-  } 
+    
+    onSubmit() {
+      console.log('Formulario enviado', this.myForm.value);
+    }
+
+    get nombre() {
+        return this.myForm.get('nombre');
+    }
+
+    get apellido() {
+        return this.myForm.get('apellido');
+    }
+    
+    get email() {
+      return this.myForm.get('email');
+    }
+
+    get confirmarEmail() {
+      return this.myForm.get('confirmarEmail');
+    }
+
+    get telefono() {
+      return this.myForm.get('telefono');
+    }
+
+    get password() {
+      return this.myForm.get('password');
+    }
+
+    get recibirNotificaciones() {
+      return this.myForm.get('recibirNotificaciones');
+    }
+
+    get aceptarTerminos() {
+      return this.myForm.get('aceptarTerminos');
+    }
+
+    validateEmailConfirmation(control: AbstractControl): { [key:string]: boolean} | null {
+      const email = this.myForm.get('email').value;
+      const confirmarEmail = control.value
+
+      if (email !== confirmarEmail) {
+        return { 'emailNoCoincide': false };
+      }
+
+      return null;
+    }
 }
