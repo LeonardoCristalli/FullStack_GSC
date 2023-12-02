@@ -10,6 +10,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 export class SubscriptionFormComponent implements OnInit {
   
   myForm: FormGroup;
+  formSubmitted = false; 
 
   constructor(private fb: FormBuilder) { }
 
@@ -18,22 +19,31 @@ export class SubscriptionFormComponent implements OnInit {
         nombre: ['', [Validators.required]], 
         apellido: ['', [Validators.required]], 
         email: ['', [Validators.required, Validators.email]],
-        confirmarEmail: ['', [Validators.required]],
-        telefono: ['', [Validators.required]],
-        password: ['', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])(a-zA-ZO-9]+)$')]],
+        confirmarEmail: ['', [Validators.required, this.validateEmailConfirmation.bind(this)]],
+        telefono: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+        password: ['', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$')]],
         recibirNotificaciones: [false],
-        aceptarTerminos: [false, [Validators.requiredTrue]]
+        aceptarTerminos: [false]
       }); 
 
       this.myForm.valueChanges.subscribe(console.log)
     }
     
     onSubmit() {
-      console.log('Formulario enviado', this.myForm.value);
+      this.formSubmitted = true;
+      this.myForm.markAllAsTouched();
+
+      if (!this.myForm.get('aceptarTerminos').value) {
+        this.myForm.get('aceptarTerminos').setErrors({ 'requiredTrue': true });
+      }
+
+      if (this.myForm.valid) {
+        console.log('Formulario enviado', this.myForm.value);
+      }
     }
 
     get nombre() {
-        return this.myForm.get('nombre');
+      return this.myForm.get('nombre');
     }
 
     get apellido() {
@@ -64,14 +74,21 @@ export class SubscriptionFormComponent implements OnInit {
       return this.myForm.get('aceptarTerminos');
     }
 
-    validateEmailConfirmation(control: AbstractControl): { [key:string]: boolean} | null {
-      const email = this.myForm.get('email').value;
-      const confirmarEmail = control.value
+    validateEmailConfirmation(control: AbstractControl): { [key: string]: boolean } | null { 
+      const emailControl = control.root.get('email');
+
+      if (!emailControl) {
+        return null;
+      }
+
+      const email = emailControl.value;
+      const confirmarEmail = control.value;
 
       if (email !== confirmarEmail) {
-        return { 'emailNoCoincide': false };
+        return { 'emailNoCoincide': true };
       }
 
       return null;
     }
+
 }

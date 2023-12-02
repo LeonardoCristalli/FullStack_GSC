@@ -1,22 +1,7 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+html {
+  height: 100%;
 }
 
-.title {
-  margin-bottom: 16px;
-}
-
-.form-container {
-  width: auto;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+body {
+  min-height: 100%;
 }

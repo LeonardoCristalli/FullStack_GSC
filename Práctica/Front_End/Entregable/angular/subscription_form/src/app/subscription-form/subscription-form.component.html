@@ -31,7 +31,7 @@
     <mat-form-field class="form-field" appearance="outline">
       <mat-label>Confirmar Email:</mat-label>
       <input matInput formControlName="confirmarEmail">
-      <mat-error *ngIf="myForm.get('confirmarEmail').hasError('emailNoCoincide')">Los correos electrónicos no coinciden</mat-error>
+      <mat-error *ngIf="myForm.get('confirmarEmail').hasError('emailNoCoincide') && myForm.get('confirmarEmail').touched">Los correos electrónicos no coinciden</mat-error>
     </mat-form-field>
   </div>
 
@@ -40,6 +40,7 @@
       <mat-label>Teléfono:</mat-label>
       <input matInput formControlName="telefono" autocomplete="tel">
       <mat-error *ngIf="myForm.get('telefono').hasError('required')">El teléfono es obligatorio</mat-error>
+      <mat-error *ngIf="myForm.get('telefono').hasError('pattern')">Ingresa solo números en el teléfono</mat-error>
     </mat-form-field>
   </div>
 
@@ -58,7 +59,7 @@
 
   <div class="form-row">
     <mat-checkbox formControlName="aceptarTerminos">Acepto los términos y condiciones</mat-checkbox>
-    <mat-error *ngIf="myForm.get('aceptarTerminos').hasError('required')">Debes aceptar los términos y condiciones.</mat-error>
+    <mat-error *ngIf="formSubmitted && myForm.get('aceptarTerminos').hasError('required')">Debes aceptar los términos y condiciones.</mat-error>
   </div>
   
   <div class="form-row">
