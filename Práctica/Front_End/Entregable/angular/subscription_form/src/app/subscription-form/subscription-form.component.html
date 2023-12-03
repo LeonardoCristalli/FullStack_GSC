@@ -59,7 +59,7 @@
 
   <div class="form-row">
     <mat-checkbox formControlName="aceptarTerminos">Acepto los términos y condiciones</mat-checkbox>
-    <mat-error *ngIf="formSubmitted && myForm.get('aceptarTerminos').hasError('required')">Debes aceptar los términos y condiciones.</mat-error>
+    <mat-error *ngIf="formSubmitted && myForm.get('aceptarTerminos').hasError('requiredTrue')">Debes aceptar los términos y condiciones.</mat-error>
   </div>
   
   <div class="form-row">
