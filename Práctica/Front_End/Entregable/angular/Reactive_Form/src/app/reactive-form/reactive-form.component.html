@@ -1,0 +1,24 @@
+<form [formGroup]="registracionForm" (ngSubmit)="enviar()">
+
+  <label>Nombre: <input type="text" formControlName="nombre"></label>
+  <label>Apellido: <input type="text" formControlName="apellido"></label>
+  <label>Email: <input type="email" formControlName="email"></label>
+  <label>Confirmarción de Email: <input type="email" formControlName="emailCheck"></label>
+  <label>Teléfono: <input type="tel" formControlName="tel"></label>
+  <label>Contraseña: <input type="password" formControlName="pw"></label>
+  <label>Recibir Notificaciones: <input type="checkbox" formControlName="notificaciones"></label>
+  <label>Aceptar los Términos y Condiciones: <input type="checkbox" formControlName="terminos"></label>
+
+  <p style="color: red;"> {{ registracionForm.controls.nombre.invalid ? "Nombre requerido" : "" }} </p>
+  <p style="color: red;"> {{ registracionForm.controls.apellido.invalid ? "Apellido requerido" : "" }} </p>
+  <p style="color: red;"> {{ registracionForm.controls.email.invalid ? "Email requerido" : ""}} </p>
+  <p style="color: red;"> {{ registracionForm.controls.emailCheck.invalid ? "Validar email requerido" : "" }} </p>
+  <p style="color: red;"> {{ registracionForm.controls.tel.invalid ? "Telefono requerido" : "" }} </p>
+  <p style="color: red;"> {{ registracionForm.controls.pw.invalid ? "Contraseña requerida" : "" }} </p>
+  <p style="color: red;"> {{ registracionForm.controls.notificaciones.invalid }} </p>
+  <p style="color: red;"> {{ registracionForm.controls.terminos.invalid ? "Aceptar Términos requerido" : "" }} </p>
+
+  <button type="submit" [disabled]="registracionForm.invalid">Enviar</button>
+  <button type="submit" (click)="limpiar()">Limpiar</button>
+
+</form>
