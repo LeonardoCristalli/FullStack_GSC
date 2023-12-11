@@ -1,0 +1,12 @@
+<div *ngIf="user">
+  <p>Detalles del Usuario</p>
+
+  <p> Id: {{ user.id }} </p>
+  <p> Nombre: {{user.nombre}} </p>
+  <p> Apellido: {{user.apellido}} </p>
+  <p> Email: {{user.email}} </p>
+  <p> Teléfono: {{user.tel}} </p>
+  <p> Contraseña: {{user.pw}} </p>
+ 
+  <button (click)="delete()">Borrar</button>
+</div>

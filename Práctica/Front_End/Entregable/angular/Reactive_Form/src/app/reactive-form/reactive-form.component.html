@@ -1,24 +1,47 @@
-<form [formGroup]="registracionForm" (ngSubmit)="enviar()">
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
 
   <label>Nombre: <input type="text" formControlName="nombre"></label>
+  <p style="color: red;"> {{ registrationForm.controls.nombre.invalid ? "Nombre requerido" : "" }} </p>
+
   <label>Apellido: <input type="text" formControlName="apellido"></label>
+  <p style="color: red;"> {{ registrationForm.controls.apellido.invalid ? "Apellido requerido" : "" }} </p>
+
   <label>Email: <input type="email" formControlName="email"></label>
+  <p style="color: red;"> 
+    {{ registrationForm.controls.email.invalid && registrationForm.controls.email.errors?.['required'] ? "Email requerido" : ""}} 
+    {{ registrationForm.controls.email.invalid && registrationForm.controls.email.errors?.['email'] ? "Ingresa un correo electrónico válido" : "" }}
+  </p>
+
   <label>Confirmarción de Email: <input type="email" formControlName="emailCheck"></label>
+  <p style="color: red;" *ngIf="registrationForm.controls.emailCheck.hasError('emailNoCoincide') && registrationForm.controls.emailCheck.touched"> 
+    {{ registrationForm.controls.emailCheck.errors?.['required'] ? "Validar email requerido" : "Los correos electrónicos no coinciden" }} 
+  </p>
+
   <label>Teléfono: <input type="tel" formControlName="tel"></label>
+  <p style="color: red;" *ngIf="registrationForm.controls.tel.hasError('required') && registrationForm.controls.tel.touched">
+    Teléfono requerido
+  </p>
+  <p style="color: red;"
+    *ngIf="registrationForm.controls.tel.hasError('pattern') && registrationForm.controls.tel.touched">
+    {{ registrationForm.controls.tel.errors?.['pattern'] ? "Ingresa un número de teléfono válido" : "" }}
+  </p>
+
   <label>Contraseña: <input type="password" formControlName="pw"></label>
+  <p style="color: red;"
+    *ngIf="registrationForm.controls.pw.hasError('required') && registrationForm.controls.pw.touched">
+    Contraseña requerida
+  </p>
+  <p style="color: red;" *ngIf="registrationForm.controls.pw.hasError('pattern') && registrationForm.controls.pw.touched">
+    {{ registrationForm.controls.pw.errors?.['pattern'] ? "La contraseña debe contener al menos un número y una letra" : "" }}
+  </p>
+
   <label>Recibir Notificaciones: <input type="checkbox" formControlName="notificaciones"></label>
+  <p style="color: red;"> {{ registrationForm.controls.notificaciones.invalid }} </p>
+
   <label>Aceptar los Términos y Condiciones: <input type="checkbox" formControlName="terminos"></label>
+  <p style="color: red;"> {{ registrationForm.controls.terminos.invalid ? "Aceptar Términos requerido" : "" }} </p>
 
-  <p style="color: red;"> {{ registracionForm.controls.nombre.invalid ? "Nombre requerido" : "" }} </p>
-  <p style="color: red;"> {{ registracionForm.controls.apellido.invalid ? "Apellido requerido" : "" }} </p>
-  <p style="color: red;"> {{ registracionForm.controls.email.invalid ? "Email requerido" : ""}} </p>
-  <p style="color: red;"> {{ registracionForm.controls.emailCheck.invalid ? "Validar email requerido" : "" }} </p>
-  <p style="color: red;"> {{ registracionForm.controls.tel.invalid ? "Telefono requerido" : "" }} </p>
-  <p style="color: red;"> {{ registracionForm.controls.pw.invalid ? "Contraseña requerida" : "" }} </p>
-  <p style="color: red;"> {{ registracionForm.controls.notificaciones.invalid }} </p>
-  <p style="color: red;"> {{ registracionForm.controls.terminos.invalid ? "Aceptar Términos requerido" : "" }} </p>
-
-  <button type="submit" [disabled]="registracionForm.invalid">Enviar</button>
+  <button type="submit" [disabled]="registrationForm.invalid">Enviar</button>
   <button type="submit" (click)="limpiar()">Limpiar</button>
 
 </form>
