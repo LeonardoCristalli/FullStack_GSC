@@ -5,7 +5,7 @@ import { UserI } from '../user';
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
-  styleUrl: './reactive-form.component.css'
+  styleUrls: ['./reactive-form.component.css']
 })
 export class ReactiveFormComponent {
   @Input() getMaxId!: () => number;
@@ -17,7 +17,7 @@ export class ReactiveFormComponent {
     nombre: ['', Validators.required],
     apellido:['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    emailCheck: ['', Validators.required],
+    emailCheck: ['', [Validators.required, this.validateEmailConfirmation]],
     tel: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
     pw: ['', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$')]],
     notificaciones: [false],
@@ -53,18 +53,18 @@ export class ReactiveFormComponent {
       return null;
     }
 
-  const emailControl = formGroup.get('email');
-    if (!emailControl) {
+    const emailControl = formGroup.get('email');
+      if (!emailControl) {
+        return null;
+      }
+
+      const email = emailControl.value;
+      const confirmarEmail = control.value;
+
+      if (email !== confirmarEmail) {
+        return { 'emailNoCoincide': true };
+      }
+
       return null;
     }
-
-    const email = emailControl.value;
-    const confirmarEmail = control.value;
-
-    if (email !== confirmarEmail) {
-      return { 'emailNoCoincide': true };
-    }
-
-    return null;
-  }
 }

@@ -42,6 +42,6 @@
   <p style="color: red;"> {{ registrationForm.controls.terminos.invalid ? "Aceptar Términos requerido" : "" }} </p>
 
   <button type="submit" [disabled]="registrationForm.invalid">Enviar</button>
-  <button type="submit" (click)="limpiar()">Limpiar</button>
+  <button type="button" (click)="limpiar()">Limpiar</button>
 
 </form>

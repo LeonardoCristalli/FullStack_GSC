@@ -4,7 +4,7 @@ import { User, UserI } from './user';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
 
@@ -30,7 +30,7 @@ export class AppComponent {
     this.selectedUser = undefined;
   }
 
-  getMaxId() {
+  getMaxId = () => {
     return Math.max(...this.users.map(user => user.id), 0);
   }
 

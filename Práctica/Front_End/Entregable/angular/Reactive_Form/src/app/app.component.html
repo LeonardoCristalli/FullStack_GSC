@@ -1,13 +1,13 @@
-<h1>Formulario de Inscripción</h1>
+  <h1>Formulario de Inscripción</h1>
 
-<ul>
-  <li (click)="selectUser(user)" *ngFor="let user of users"> {{user.id}}: {{ user.nombre }} </li>
-</ul> 
+  <ul>
+    <li (click)="selectUser(user)" *ngFor="let user of users"> {{user.id}}: {{ user.nombre }} </li>
+  </ul> 
 
-<app-user-detail (deleteMsg)="deleteUser($event)" [user]="selectedUser"></app-user-detail>
+  <app-user-detail (deleteMsg)="deleteUser($event)" [user]="selectedUser"></app-user-detail>
 
-<div *ngIf="users.length === 0">
-  <p>No hay clientes</p>
-</div>
+  <div *ngIf="users.length === 0">
+    <p>No hay clientes</p>
+  </div>
 
-<app-reactive-form></app-reactive-form>
+  <app-reactive-form [getMaxId]="getMaxId" (addUserEvent)="addUser($event)"></app-reactive-form>
