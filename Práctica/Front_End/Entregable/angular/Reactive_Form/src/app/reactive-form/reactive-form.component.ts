@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UserI } from '../user';
+import { FormDataService } from '../form-data.service';
 
 @Component({
   selector: 'app-reactive-form',
@@ -11,7 +12,7 @@ export class ReactiveFormComponent {
   @Input() getMaxId!: () => number;
   @Output() addUserEvent = new EventEmitter<UserI>();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private formDataService: FormDataService) {}
 
   registrationForm = this.fb.group({
     nombre: ['', Validators.required],
@@ -39,6 +40,7 @@ export class ReactiveFormComponent {
       terminos: true,
     }
 
+    this.formDataService.receiveFormData(newUser);
     this.addUserEvent.emit(newUser);
     this.registrationForm.reset();
   }
