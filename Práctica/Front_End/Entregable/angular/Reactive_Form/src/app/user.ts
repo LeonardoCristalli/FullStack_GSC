@@ -1,10 +1,10 @@
 export interface UserI {
-  id: number;
+  id: number | null;
   nombre: string;
   apellido: string;
   email: string;
   emailCheck: string;
-  tel: number;
+  tel: string;
   pw: string;
   notificaciones: boolean;
   terminos: boolean;
@@ -12,12 +12,12 @@ export interface UserI {
 
 export class User implements UserI {
   constructor(
-    public id: number,
+    public id: number | null,
     public nombre: string,
     public apellido: string,
     public email: string,
     public emailCheck: string,
-    public tel: number,
+    public tel: string,
     public pw: string,
     public notificaciones: boolean,
     public terminos: boolean

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { User, UserI } from './user';
+import { UserI } from './user';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,34 +10,47 @@ import { User, UserI } from './user';
 export class AppComponent {
 
   title = 'Reactive_Form';
-
   users: UserI[] = [];
   selectedUser: UserI | undefined;
 
-  constructor() {
-    this.users.push(new User(1, 'Leo', 'Mate', 'lamerced@gmail.com', 'lamerced@gmail.com', 12345678, 'playadito', false, true));
-    this.users.push(new User(2, 'Mike', 'Messi', 'messi@gmail.com', 'messi@gmail.com', 999999, 'dimaria', true, true));
-    this.users.push(new User(3, 'asdasds', 'dsadasdas', 'dsadas@gmail.com', 'dsadas@gmail.com', 11010, '2131', false, true));
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {
+    this.loadUsers();
+  }
+
+  loadUsers() {
+    this.userService.getUsers().subscribe({
+      next: (users: UserI[]) => {
+        this.users = users; 
+      },
+      error: (error) => {
+        console.error('Error al cargar usuarios:', error);
+      }
+    });
   }
 
   selectUser(user: UserI) {
     this.selectedUser = user;
   }
 
-  deleteUser ($event: number) {
-    this.users = this.users.filter(user => {
-      return user.id !== $event;
+  deleteUser($event: number) {
+    this.userService.deleteUser($event).subscribe({
+      next: () => {
+        this.users = this.users.filter(user => user.id !== $event);
+        this.selectedUser = undefined;
+      },
+      error: (error) => {
+        console.log('Error al eliminar usuario:', error);
+      }
     });
-    this.selectedUser = undefined;
-  }
-
-  getMaxId = () => {
-    return Math.max(...this.users.map(user => user.id), 0);
   }
 
   addUser(newUser: UserI) {
-    console.log('Nuevo Usuario:', newUser);
     this.users.push(newUser);
+    
+    this.users = [... this.users];
+    console.log('Usuarios addUser', this.users);
   }
-
+  
 }
