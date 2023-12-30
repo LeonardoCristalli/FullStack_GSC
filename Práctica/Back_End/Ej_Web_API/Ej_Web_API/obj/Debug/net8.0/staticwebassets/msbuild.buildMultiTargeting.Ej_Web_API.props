@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Ej_Web_API.props" />
+</Project>
