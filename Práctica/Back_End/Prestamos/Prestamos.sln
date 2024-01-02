@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prestamos.Api", "Prestamos.Api\Prestamos.Api.csproj", "{0D046D0E-9959-4E46-9E5D-9ADA269FA8AB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Prestamos.Db", "Prestamos.Db\Prestamos.Db.sqlproj", "{F355C65E-B5FB-4127-9987-BDB82690CDC3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D046D0E-9959-4E46-9E5D-9ADA269FA8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D046D0E-9959-4E46-9E5D-9ADA269FA8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D046D0E-9959-4E46-9E5D-9ADA269FA8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D046D0E-9959-4E46-9E5D-9ADA269FA8AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F355C65E-B5FB-4127-9987-BDB82690CDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F355C65E-B5FB-4127-9987-BDB82690CDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F355C65E-B5FB-4127-9987-BDB82690CDC3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F355C65E-B5FB-4127-9987-BDB82690CDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F355C65E-B5FB-4127-9987-BDB82690CDC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F355C65E-B5FB-4127-9987-BDB82690CDC3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B166212C-AB14-4906-8B59-345EF63644C8}
+	EndGlobalSection
+EndGlobal
