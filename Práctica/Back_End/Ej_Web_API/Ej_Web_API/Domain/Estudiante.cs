@@ -1,4 +1,5 @@
-﻿namespace Ej_Web_API.Domain
+﻿
+namespace Ej_Web_API.Domain
 {
     public class Estudiante
     {   
@@ -6,5 +7,6 @@
         public string Nombre { get; set; }
         public string Apellido {  get; set; }
         public int Legajo { get; set; }
+        public DateOnly FechaNacimiento { get; set; }
     }
 }
