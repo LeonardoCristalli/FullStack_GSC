@@ -19,10 +19,14 @@ namespace TpFinalPrestamos.WebApi.Controllers
             return await context.Categories.ToListAsync();
         }
 
+        /*
+         
         // POST api/categories/default
         [HttpPost("default")]
         public async Task<ActionResult<IEnumerable<Category>>> CreateDefaultCategories()
         {
+            var existingCategories = await context.Categories.Select(c => c.Description).ToListAsync();  
+
             var defaultCategories = new List<Category>
             {
                 new Category { Description = "Dinero"},
@@ -34,14 +38,38 @@ namespace TpFinalPrestamos.WebApi.Controllers
                 new Category { Description = "Varios"},
             };
 
-            context.Categories.AddRange(defaultCategories);
+            foreach (var category in defaultCategories) 
+            {
+                if (!existingCategories.Contains(category.Description))
+                {
+                    context.Categories.Add(category);
+                }
+            }
+
             await context.SaveChangesAsync();
 
             return Ok(defaultCategories);
         }
+
+        */
+
+        // POST api/categories
+        [HttpPost]
+        public async Task<ActionResult<Category>> CreateCategory(Category category)
+        {
+            var existingCategories = await context.Categories.ToListAsync();
+
+            var existingCategory =  existingCategories.FirstOrDefault(c => c.Description.Equals(category.Description, StringComparison.OrdinalIgnoreCase));
+    
+            if (existingCategory != null) 
+            {
+                return Conflict($"La categoria '{category.Description}' ya existe.");
+            }
+
+            this.context.Categories.Add(category);
+            await this.context.SaveChangesAsync();
+
+            return this.CreatedAtAction(nameof(GetAll), new { id = category.Id }, category);
+        }
     }
-
-
-
-
 }
