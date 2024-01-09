@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public string Description { get; set; }
         public DateOnly CreationDate { get; set; }
-
+        public List<Thing> Things { get; set; }
         public Category()
         {
             CreationDate = DateOnly.FromDateTime(DateTime.Now);
