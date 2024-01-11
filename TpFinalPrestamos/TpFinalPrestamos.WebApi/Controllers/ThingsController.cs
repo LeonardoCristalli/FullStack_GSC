@@ -16,7 +16,7 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Thing>>> GetAll()
         {
-            return await this.context.Things.ToListAsync();
+            return await this.context.Thing.ToListAsync();
         }
 
         // GET api/things/{id}
@@ -35,7 +35,7 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Thing>> Create(Thing thing)
         {
-            this.context.Things.Add(thing);
+            this.context.Thing.Add(thing);
             await context.SaveChangesAsync();
 
             return this.CreatedAtAction(nameof(GetById), new { id = thing.Id }, thing);
@@ -45,7 +45,7 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpPut]
         public async Task<ActionResult> Update(Thing thing)
         {
-            this.context.Things.Update(thing);
+            this.context.Thing.Update(thing);
             await this.context.SaveChangesAsync();
 
             return this.NoContent();
@@ -60,7 +60,7 @@ namespace TpFinalPrestamos.WebApi.Controllers
             if (thing == null)
                 return NotFound();
 
-            this.context.Things.Remove(thing);
+            this.context.Thing.Remove(thing);
             await this.context.SaveChangesAsync();
 
             return this.NoContent();

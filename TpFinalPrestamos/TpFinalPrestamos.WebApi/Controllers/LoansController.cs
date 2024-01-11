@@ -16,7 +16,7 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Loan>>> GetAll()
         {
-            return await context.Loans.ToListAsync();
+            return await context.Loan.ToListAsync();
         }
 
         // POST api/loans

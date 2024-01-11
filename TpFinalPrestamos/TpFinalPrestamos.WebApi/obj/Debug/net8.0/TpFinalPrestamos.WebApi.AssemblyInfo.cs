@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TpFinalPrestamos.WebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8e298d6bd0d1cc0398ee887e7241ef064de2e76")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e67512402b53c49776a5276085ad509dec5db43d")]
 [assembly: System.Reflection.AssemblyProductAttribute("TpFinalPrestamos.WebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TpFinalPrestamos.WebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

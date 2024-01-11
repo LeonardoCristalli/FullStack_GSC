@@ -16,7 +16,7 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Person>>> GetAll()
         {
-            return await this.context.Persons.ToListAsync();
+            return await this.context.Person.ToListAsync();
         }
         
         // GET api/persons/{id}

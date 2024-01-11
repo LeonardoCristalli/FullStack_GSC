@@ -26,7 +26,7 @@ if (app.Environment.IsDevelopment())
 
         dbContext.Database.Migrate();
 
-        if (!dbContext.Categories.Any())
+        if (!dbContext.Category.Any())
         {
             var defaultCategories = new List<Category>
             {
@@ -39,7 +39,7 @@ if (app.Environment.IsDevelopment())
                 new Category { Description = "Varios"},
             };
 
-            dbContext.Categories.AddRange(defaultCategories);
+            dbContext.Category.AddRange(defaultCategories);
             dbContext.SaveChanges();
         }
     }
