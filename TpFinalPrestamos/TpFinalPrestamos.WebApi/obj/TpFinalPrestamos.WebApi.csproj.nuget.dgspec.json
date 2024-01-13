@@ -40,6 +40,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Grpc.AspNetCore": {
+              "target": "Package",
+              "version": "[2.60.0, )"
+            },
+            "Grpc.AspNetCore.Server.Reflection": {
+              "target": "Package",
+              "version": "[2.60.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.0, )"

@@ -1,12 +1,30 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 using TpFinalPrestamos.WebApi.DataAccess;
 using TpFinalPrestamos.WebApi.Domain;
+using TpFinalPrestamos.WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<TpFinalPrestamosDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("TpFinalPrestamosDb")));
+
+// Auntenticación 
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(opt => opt.TokenValidationParameters = new TokenValidationParameters()
+    {
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ClaveDeSeguridadConUnMínimoDe256Bits")),
+        ValidateAudience = false,
+        ValidateIssuer = false,
+        ValidateIssuerSigningKey = true
+    });
+
+builder.Services.AddGrpcReflection();
+builder.Services.AddGrpc();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -59,8 +77,13 @@ else
 }
 
 app.UseRouting();
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
+
+app.MapGrpcReflectionService();
+app.MapGrpcService<MyLoanService>();
+
 //app.MapGet("/", () => "Hello World!");
+
 app.Run();

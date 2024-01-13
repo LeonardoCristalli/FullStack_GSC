@@ -1,0 +1,14 @@
+﻿syntax = "proto3";
+
+service LoanService {
+  rpc MarkAsReturned (LoanRequest) returns (LoanResponse);
+}
+
+message LoanRequest {
+  int32 loanId = 1;
+}
+
+message LoanResponse {
+  bool success = 1;
+  string message = 2;
+}

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TpFinalPrestamos.WebApi.DataAccess;
 using TpFinalPrestamos.WebApi.Domain;
@@ -6,6 +7,7 @@ using TpFinalPrestamos.WebApi.Domain;
 namespace TpFinalPrestamos.WebApi.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[Controller]")]
     public class CategoriesController : ControllerBase
     {

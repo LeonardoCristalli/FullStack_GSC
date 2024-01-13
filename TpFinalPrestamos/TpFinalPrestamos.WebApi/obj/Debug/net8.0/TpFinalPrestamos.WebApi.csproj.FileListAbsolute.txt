@@ -69,3 +69,13 @@ C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\
 C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\obj\Debug\net8.0\TpFinalPrestamos.WebApi.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Google.Protobuf.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.AspNetCore.Server.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.AspNetCore.Server.ClientFactory.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.AspNetCore.Server.Reflection.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Core.Api.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Net.Client.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Net.ClientFactory.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Net.Common.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Reflection.dll
