@@ -34,11 +34,11 @@ namespace TpFinalPrestamos.WebApi.Controllers
         // POST api/things
         [HttpPost]
         public async Task<ActionResult<Thing>> Create(Thing thing)
-        {
-            this.context.Thing.Add(thing);
+        {        
+            context.Thing.Add(thing);
             await context.SaveChangesAsync();
 
-            return this.CreatedAtAction(nameof(GetById), new { id = thing.Id }, thing);
+            return CreatedAtAction(nameof(GetById), new { id = thing.Id }, thing);
         }
 
         // PUT api/things

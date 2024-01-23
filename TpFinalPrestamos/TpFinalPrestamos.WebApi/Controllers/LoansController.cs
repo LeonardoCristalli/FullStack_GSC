@@ -23,10 +23,24 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Loan>> CreateLoan(Loan loan)
         {
+            if (loan == null)
+            {
+                return BadRequest("Invalid request body");
+            }
+
+            var newLoan = new Loan
+            {
+                LoanDate = loan.LoanDate,
+                ReturnDate = loan.ReturnDate,
+                Status = loan.Status,
+                PersonId = loan.PersonId,
+                ThingId = loan.ThingId
+            };
+
             this.context.Add(loan);
             await this.context.SaveChangesAsync();
 
-            return this.CreatedAtAction(nameof(GetAll), new { id = loan.Id }, loan);
+            return this.CreatedAtAction(nameof(GetAll), new { id = newLoan.Id }, newLoan);
         }
 
         // PUT api/loans

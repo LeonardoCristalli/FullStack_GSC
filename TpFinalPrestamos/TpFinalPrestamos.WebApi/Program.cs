@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TpFinalPrestamosDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("TpFinalPrestamosDb")));
 
-// Auntenticación 
 builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt => opt.TokenValidationParameters = new TokenValidationParameters()
@@ -31,14 +30,20 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "TpFinalPrestamos.WebApi", Version = "v1" });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+     {
+         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+     });
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+
     using (var scope = app.Services.CreateScope())
     {
+
         var services = scope.ServiceProvider;
         var dbContext = services.GetRequiredService<TpFinalPrestamosDbContext>();
 
@@ -69,6 +74,9 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TpFinalPrestamos.WebApi v1");
         c.RoutePrefix = string.Empty;
     });
+
+    app.UseWebSockets();
+    app.UseGrpcWeb(new GrpcWebOptions { DefaultEnabled = true });
 }
 else
 {
@@ -83,7 +91,5 @@ app.MapControllers();
 
 app.MapGrpcReflectionService();
 app.MapGrpcService<MyLoanService>();
-
-//app.MapGet("/", () => "Hello World!");
 
 app.Run();

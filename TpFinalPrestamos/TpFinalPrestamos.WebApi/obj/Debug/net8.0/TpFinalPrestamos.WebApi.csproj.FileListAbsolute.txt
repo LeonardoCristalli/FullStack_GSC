@@ -79,3 +79,4 @@ C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\
 C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Net.ClientFactory.dll
 C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Net.Common.dll
 C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.Reflection.dll
+C:\Users\54341\Proyectos\FullStack_GSC\TpFinalPrestamos\TpFinalPrestamos.WebApi\bin\Debug\net8.0\Grpc.AspNetCore.Web.dll

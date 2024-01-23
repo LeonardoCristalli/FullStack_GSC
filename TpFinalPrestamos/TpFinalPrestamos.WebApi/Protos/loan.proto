@@ -1,5 +1,9 @@
 ﻿syntax = "proto3";
 
+option csharp_namespace = "TpFinalPrestamos.WebApi.Services";
+
+package loans; 
+
 service LoanService {
   rpc MarkAsReturned (LoanRequest) returns (LoanResponse);
 }

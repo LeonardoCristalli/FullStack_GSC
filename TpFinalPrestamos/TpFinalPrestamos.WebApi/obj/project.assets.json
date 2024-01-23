@@ -46,7 +46,7 @@
           }
         }
       },
-      "Google.Protobuf/3.24.0": {
+      "Google.Protobuf/3.25.2": {
         "type": "package",
         "compile": {
           "lib/net5.0/Google.Protobuf.dll": {
@@ -126,6 +126,22 @@
         },
         "runtime": {
           "lib/net8.0/Grpc.AspNetCore.Server.Reflection.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
+      "Grpc.AspNetCore.Web/2.60.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Grpc.AspNetCore.Web.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Grpc.AspNetCore.Web.dll": {
             "related": ".pdb;.xml"
           }
         },
@@ -1246,14 +1262,14 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
-    "Google.Protobuf/3.24.0": {
-      "sha512": "5j/OBUVWPTeRYlG3Dm4PSupyU6nJmbnnhPeqjePzCqtzrh5vErx8dToStuhTnG1ZYZ+dawGziC7DN1I6FEQH0g==",
+    "Google.Protobuf/3.25.2": {
+      "sha512": "g/xIIeLhR77bl4ajGGbPYRmZf5acJlCRaSBqUnU8+2aQYREnZnv+UccRNndHof4mWO1ORS0b5i6on40VOjBpsg==",
       "type": "package",
-      "path": "google.protobuf/3.24.0",
+      "path": "google.protobuf/3.25.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "google.protobuf.3.24.0.nupkg.sha512",
+        "google.protobuf.3.25.2.nupkg.sha512",
         "google.protobuf.nuspec",
         "lib/net45/Google.Protobuf.dll",
         "lib/net45/Google.Protobuf.pdb",
@@ -1346,6 +1362,28 @@
         "lib/net8.0/Grpc.AspNetCore.Server.Reflection.dll",
         "lib/net8.0/Grpc.AspNetCore.Server.Reflection.pdb",
         "lib/net8.0/Grpc.AspNetCore.Server.Reflection.xml",
+        "packageIcon.png"
+      ]
+    },
+    "Grpc.AspNetCore.Web/2.60.0": {
+      "sha512": "ol7ikU+5VPBjoVYzIak2sOt5GkadowBdhjOw63xpn0QET7c8x85GyIPr4JkWLL09vuwDu1mlPLuuf77DVvf0iA==",
+      "type": "package",
+      "path": "grpc.aspnetcore.web/2.60.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "grpc.aspnetcore.web.2.60.0.nupkg.sha512",
+        "grpc.aspnetcore.web.nuspec",
+        "lib/net6.0/Grpc.AspNetCore.Web.dll",
+        "lib/net6.0/Grpc.AspNetCore.Web.pdb",
+        "lib/net6.0/Grpc.AspNetCore.Web.xml",
+        "lib/net7.0/Grpc.AspNetCore.Web.dll",
+        "lib/net7.0/Grpc.AspNetCore.Web.pdb",
+        "lib/net7.0/Grpc.AspNetCore.Web.xml",
+        "lib/net8.0/Grpc.AspNetCore.Web.dll",
+        "lib/net8.0/Grpc.AspNetCore.Web.pdb",
+        "lib/net8.0/Grpc.AspNetCore.Web.xml",
         "packageIcon.png"
       ]
     },
@@ -3306,8 +3344,10 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Google.Protobuf >= 3.25.2",
       "Grpc.AspNetCore >= 2.60.0",
       "Grpc.AspNetCore.Server.Reflection >= 2.60.0",
+      "Grpc.AspNetCore.Web >= 2.60.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
@@ -3352,11 +3392,19 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Google.Protobuf": {
+            "target": "Package",
+            "version": "[3.25.2, )"
+          },
           "Grpc.AspNetCore": {
             "target": "Package",
             "version": "[2.60.0, )"
           },
           "Grpc.AspNetCore.Server.Reflection": {
+            "target": "Package",
+            "version": "[2.60.0, )"
+          },
+          "Grpc.AspNetCore.Web": {
             "target": "Package",
             "version": "[2.60.0, )"
           },

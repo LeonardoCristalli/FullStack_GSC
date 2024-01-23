@@ -40,11 +40,19 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.25.2, )"
+            },
             "Grpc.AspNetCore": {
               "target": "Package",
               "version": "[2.60.0, )"
             },
             "Grpc.AspNetCore.Server.Reflection": {
+              "target": "Package",
+              "version": "[2.60.0, )"
+            },
+            "Grpc.AspNetCore.Web": {
               "target": "Package",
               "version": "[2.60.0, )"
             },
