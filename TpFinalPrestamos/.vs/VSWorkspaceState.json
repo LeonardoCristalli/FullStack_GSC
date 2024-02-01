@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\TpFinalPrestamos.WebApi"
+    "\\FE_CRUD_Prestamos",
+    "\\TpFinalPrestamos.WebApi",
+    "\\TpFinalPrestamos.WebApi\\Controllers"
   ],
-  "SelectedNode": "\\TpFinalPrestamos.WebApi\\Program.cs",
+  "SelectedNode": "\\TpFinalPrestamos.WebApi\\Controllers\\PersonsController.cs",
   "PreviewInSolutionExplorer": false
 }

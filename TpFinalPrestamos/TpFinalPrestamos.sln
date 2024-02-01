@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TpFinalPrestamos.WebApi", "TpFinalPrestamos.WebApi\TpFinalPrestamos.WebApi.csproj", "{1F0CC218-D910-4925-81CD-C35A72365EE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TpFinalPrestamos.Tests.Unit", "TpFinalPrestamos.Tests.Unit\TpFinalPrestamos.Tests.Unit.csproj", "{37286E37-6DC0-420D-A558-5BA4630CC987}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1F0CC218-D910-4925-81CD-C35A72365EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F0CC218-D910-4925-81CD-C35A72365EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F0CC218-D910-4925-81CD-C35A72365EE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37286E37-6DC0-420D-A558-5BA4630CC987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37286E37-6DC0-420D-A558-5BA4630CC987}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37286E37-6DC0-420D-A558-5BA4630CC987}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37286E37-6DC0-420D-A558-5BA4630CC987}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

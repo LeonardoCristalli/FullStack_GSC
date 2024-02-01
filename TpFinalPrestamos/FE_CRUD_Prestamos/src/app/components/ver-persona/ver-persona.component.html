@@ -1,0 +1,22 @@
+<div class="title">
+  <h1>Ver Persona</h1>
+</div>
+
+<div *ngIf="persona != null" class="container">
+  <mat-card class="card">
+
+    <mat-card-title>{{ persona.Name }}</mat-card-title>
+
+    <mat-card-content>
+      <p><strong>ID:</strong> {{ persona.Id }} </p>
+      <p><strong>Nombre:</strong> {{ persona.Name }} </p>
+      <p><strong>Email:</strong> {{ persona.EmailAdress }} </p>
+      <p><strong>Telefono:</strong> {{ persona.PhoneNumber }} </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+        <button routerLink="/listPersonas" mat-raised-button>Volver</button>
+    </mat-card-actions>
+
+  </mat-card>
+</div>

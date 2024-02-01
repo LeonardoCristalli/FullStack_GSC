@@ -9,34 +9,55 @@ namespace TpFinalPrestamos.WebApi.Controllers
     [Route("api/[controller]")] 
     public class PersonsController : ControllerBase
     {
-        private readonly TpFinalPrestamosDbContext context;
-        public PersonsController(TpFinalPrestamosDbContext context) => this.context = context;
-
+        private readonly TpFinalPrestamosDbContext _context;
+        public PersonsController(TpFinalPrestamosDbContext context)
+        {
+            _context = context;
+        }
+    
         // GET api/persons
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Person>>> GetAll()
         {
-            return await this.context.Person.ToListAsync();
+            try
+            {
+                var personsList = await _context.Person.ToListAsync();
+                return Ok(personsList);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }            
         }
         
         // GET api/persons/{id}
         [HttpGet("{id}")]
         public async Task<ActionResult<Person>> GetById(int id)
         {
-            var person = await this.context.FindAsync<Person>(id);
+            try
+            {
+                var person = await this._context.FindAsync<Person>(id);
+                
+                if (person == null)
+                {
+                    return this.NotFound();
+                }                    
 
-            if (person == null)
-                return this.NotFound();
+                return Ok(person);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }                      
 
-            return person;
         }
 
         // POST api/persons
         [HttpPost]
         public async Task<ActionResult<Person>> Create(Person person)
         {
-            this.context.Add(person);
-            await this.context.SaveChangesAsync();
+            this._context.Add(person);
+            await this._context.SaveChangesAsync();
 
             return this.CreatedAtAction(nameof(GetById), new { id = person.Id }, person);
         }
@@ -45,8 +66,8 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpPut]
         public async Task<ActionResult> Update(Person person)
         {
-            this.context.Update(person);
-            await this.context.SaveChangesAsync();
+            this._context.Update(person);
+            await this._context.SaveChangesAsync();
 
             return this.NoContent();
         }
@@ -55,13 +76,13 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var person = await this.context.FindAsync<Person>(id);
+            var person = await this._context.FindAsync<Person>(id);
 
             if (person == null)
                 return this.NotFound();
 
-            this.context.Remove(person);
-            await this.context.SaveChangesAsync();
+            this._context.Remove(person);
+            await this._context.SaveChangesAsync();
 
             return this.NoContent();
         }

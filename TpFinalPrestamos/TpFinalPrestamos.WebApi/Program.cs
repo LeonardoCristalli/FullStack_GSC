@@ -25,15 +25,18 @@ builder.Services
 builder.Services.AddGrpcReflection();
 builder.Services.AddGrpc();
 
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "TpFinalPrestamos.WebApi", Version = "v1" });
-});
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddCors(options => options.AddPolicy("AllowWebapp",
+                                    builder => builder.AllowAnyOrigin()
+                                                    .AllowAnyHeader()
+                                                    .AllowAnyMethod()));
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
      {
-         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+         options.JsonSerializerOptions.IgnoreNullValues = true;
+         options.JsonSerializerOptions.PropertyNamingPolicy = null;
      });
 
 var app = builder.Build();
@@ -83,6 +86,8 @@ else
     app.UseExceptionHandler("/Home/error");
     app.UseHsts();
 }
+
+app.UseCors("AllowWebapp");
 
 app.UseRouting();
 app.UseAuthentication();
