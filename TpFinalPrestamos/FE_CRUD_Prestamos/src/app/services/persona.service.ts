@@ -28,4 +28,16 @@ export class PersonaService {
       tap(data => console.log('Datos del servidor:', data))
     );
   }
+
+  deletePersona(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.myAppUrl}${this.myApiUrl}${id}`);
+  }
+
+  addPersona(persona: Persona): Observable<Persona> {
+    return this.http.post<Persona>(`${this.myAppUrl}${this.myApiUrl}`, persona);
+  }
+
+  updatePersona(id: number, persona: Persona): Observable<void> {
+    return this.http.put<void>(`${this.myAppUrl}${this.myApiUrl}${id}`, persona);
+  }
 }

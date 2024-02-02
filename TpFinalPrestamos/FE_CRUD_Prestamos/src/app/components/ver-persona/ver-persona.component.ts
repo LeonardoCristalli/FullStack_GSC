@@ -13,6 +13,7 @@ export class VerPersonaComponent implements OnInit {
 
   id: number;
   persona!: Persona;
+  loading: boolean = false;
 
   constructor(private _personaService: PersonaService,
       private aRoute: ActivatedRoute) {
@@ -24,9 +25,11 @@ export class VerPersonaComponent implements OnInit {
   }
 
 obtenerPersona() {
+    this.loading = true;
     this._personaService.getPersona(this.id).subscribe(data => {
       this.persona = data;
       console.log('Datos asignados a persona:', this.persona);
+      this.loading = false;
     });
   }
 }

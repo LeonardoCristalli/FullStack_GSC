@@ -1,5 +1,5 @@
 <div class="title">
-  <h1>Agregar Persona</h1>
+  <h1> {{ operacion }} Persona</h1>
 </div>
 
 <app-spinner *ngIf="loading"></app-spinner>
@@ -11,7 +11,7 @@
       Datos de la Persona
     </mat-card-subtitle>
 
-    <form [formGroup]="form" (ngSubmit)="agregarPersona()">
+    <form [formGroup]="form" (ngSubmit)="agregarEditarPersona()">
 
       <mat-grid-list cols="2" rowHeight="80px">
 

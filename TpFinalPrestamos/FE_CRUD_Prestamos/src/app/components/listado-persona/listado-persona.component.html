@@ -39,8 +39,8 @@
       </th>
       <td mat-cell *matCellDef="let element">
         <mat-icon routerLink="/verPersona/{{ element.Id }}" matTooltip="Ver" class="search" fontIcon="search"></mat-icon>
-        <mat-icon routerLink="/editarPersona/1" matTooltip="Editar" class="edit" fontIcon="edit"></mat-icon>
-        <mat-icon (click)="eliminarPersona()" matTooltip="Eliminar" class="delete" fontIcon="delete"></mat-icon>
+        <mat-icon routerLink="/editarPersona/{{ element.Id }}" matTooltip="Editar" class="edit" fontIcon="edit"></mat-icon>
+        <mat-icon (click)="eliminarPersona(element.Id)" matTooltip="Eliminar" class="delete" fontIcon="delete"></mat-icon>
       </td>
     </ng-container>
 

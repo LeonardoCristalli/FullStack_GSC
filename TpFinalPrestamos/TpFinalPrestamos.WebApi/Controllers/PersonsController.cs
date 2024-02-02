@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TpFinalPrestamos.WebApi.DataAccess;
 using TpFinalPrestamos.WebApi.Domain;
@@ -56,35 +57,74 @@ namespace TpFinalPrestamos.WebApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Person>> Create(Person person)
         {
-            this._context.Add(person);
-            await this._context.SaveChangesAsync();
+            try
+            {
+                _context.Add(person);
+                await _context.SaveChangesAsync();
 
-            return this.CreatedAtAction(nameof(GetById), new { id = person.Id }, person);
+                return this.CreatedAtAction(nameof(GetById), new { id = person.Id }, person);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }           
         }
 
         // PUT api/persons
-        [HttpPut]
-        public async Task<ActionResult> Update(Person person)
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update(int id, Person person)
         {
-            this._context.Update(person);
-            await this._context.SaveChangesAsync();
+            try
+            {
+                if (id != person.Id)
+                {
+                    return BadRequest();
+                }
 
-            return this.NoContent();
+                var personItem = await _context.Person.FindAsync(id);
+
+                if (personItem == null)
+                {
+                    return NotFound();
+                }
+
+                personItem.Name = person.Name;
+                personItem.EmailAdress = person.EmailAdress;
+                personItem.PhoneNumber = person.PhoneNumber;
+
+                await _context.SaveChangesAsync();
+
+                return Ok(person);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         // DELETE api/persons/{id}
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var person = await this._context.FindAsync<Person>(id);
+            try
+            {
+                var person = await _context.FindAsync<Person>(id);
 
-            if (person == null)
-                return this.NotFound();
+                if (person == null)
+                {
+                    return NotFound();
+                }                 
 
-            this._context.Remove(person);
-            await this._context.SaveChangesAsync();
+                _context.Remove(person);
+                await _context.SaveChangesAsync(); 
 
-            return this.NoContent();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

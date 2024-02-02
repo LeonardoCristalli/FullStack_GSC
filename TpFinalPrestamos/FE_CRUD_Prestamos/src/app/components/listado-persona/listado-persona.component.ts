@@ -52,16 +52,21 @@ export class ListadoPersonaComponent implements AfterViewInit {
     })
   }
 
-  eliminarPersona() {
+  eliminarPersona(id: number) {
     this.loading = true;
 
-    setTimeout(() => {
+    this._personaService.deletePersona(id).subscribe(() => {
+      this.mensajeExito();
       this.loading = false;
-      this._snackBar.open('La Persona fue eliminada con exito', '', {
-        duration: 4000,
-        horizontalPosition: 'right',
-      });
-    }, 3000);
-
+      this.obtenerPersonas();
+    });
   }
+
+  mensajeExito() {
+    this._snackBar.open('La Persona fue eliminada con exito', '', {
+      duration: 4000,
+      horizontalPosition: 'right',
+    });
+  }
+  
 }
